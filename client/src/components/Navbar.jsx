@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useOCAuth, } from '@opencampus/ocid-connect-js';
+import { useOCAuth } from '@opencampus/ocid-connect-js';
 import Login from '../pages/Login';
 
 const Navbar = () => {
     const { authState } = useOCAuth();
+
+    // Check if studentAuthToken is present in localStorage
+    const [isStudentAuthenticated, setIsStudentAuthenticated] = useState(false);
+
+    useEffect(() => {
+        if (localStorage.getItem('studentAuthToken')){
+            setIsStudentAuthenticated(true);
+        }
+    }, [authState]);
+
     const handleLogout = () => {
-        localStorage.removeItem('oc-token-storage')
+        localStorage.removeItem('oc-token-storage');
+        localStorage.removeItem('studentAuthToken');
+        setIsStudentAuthenticated(false);
         window.location.href = '/';
     };
 
@@ -23,7 +35,7 @@ const Navbar = () => {
                             Home
                         </Link>
                     </li>
-                    {authState.isAuthenticated ? (
+                    {authState.isAuthenticated  ? (
                         <li>
                             <Link
                                 to="/"
