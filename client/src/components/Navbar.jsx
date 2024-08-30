@@ -2,30 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useOCAuth } from '@opencampus/ocid-connect-js';
 import Login from '../pages/Login';
+import useStore from '../store/useStore';
 
 const Navbar = () => {
-    const { authState } = useOCAuth();
+    const isStudentLoggedIn = useStore((state) => state.isStudentLoggedIn);
+    const setIsStudentLoggedIn = useStore((state) => state.setIsStudentLoggedIn);
 
-    // Check if studentAuthToken is present in localStorage
-    const [isStudentAuthenticated, setIsStudentAuthenticated] = useState(false);
+    const isCounsellorLoggedIn = useStore((state) => state.isCounsellorLoggedIn);
+    const setIsCounsellorLoggedIn = useStore((state) => state.setIsCounsellorLoggedIn)
 
-    useEffect(() => {
-        if (localStorage.getItem('studentAuthToken')){
-            setIsStudentAuthenticated(true);
-        }
-    }, [authState]);
 
-    const handleLogout = () => {
+
+    const handleLogout = () => { 
         localStorage.removeItem('oc-token-storage');
         localStorage.removeItem('studentAuthToken');
-        setIsStudentAuthenticated(false);
+        localStorage.removeItem('counsellorAuthToken');
+        setIsStudentLoggedIn(false);
+        setIsCounsellorLoggedIn(false);
         window.location.href = '/';
     };
 
     return (
-        <nav className='bg-gray-700 py-1 px-8  flex flex-row justify-between w-full'>
+        <nav className='bg-gray-700 py-1 px-8 flex flex-row justify-between w-full'>
             <Link to="/" className="text-white hover:text-gray-300">
-                <img src="./src/assets/Education_Logo-removebg-preview.png" alt="" className="w-[70px]" />
+                <img src="./src/assets/Education_Logo-removebg-preview.png" alt="Logo" className="w-[70px]" />
             </Link>
 
             <div className="flex items-center">
@@ -35,7 +35,21 @@ const Navbar = () => {
                             Home
                         </Link>
                     </li>
-                    {authState.isAuthenticated  ? (
+                    {isStudentLoggedIn && (
+                        <li>
+                            <Link to="/student-profile" className="text-white hover:text-gray-300">
+                                Student Profile
+                            </Link>
+                        </li>
+                    )}
+                    {isCounsellorLoggedIn && (
+                        <li>
+                            <Link to="/counsellor-profile" className="text-white hover:text-gray-300">
+                                Counsellor Profile
+                            </Link>
+                        </li>
+                    )}
+                    {(isStudentLoggedIn || isCounsellorLoggedIn) ? (
                         <li>
                             <Link
                                 to="/"

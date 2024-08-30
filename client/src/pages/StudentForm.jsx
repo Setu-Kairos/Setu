@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useOCAuth } from '@opencampus/ocid-connect-js';
 import { submitStudentForm } from '../apiClient';
+import useStore from '../store/useStore';
 
 const StudentForm = () => {
     const navigate = useNavigate();
     const { ocAuth } = useOCAuth();
+    const setIsStudentLoggedIn = useStore((state) => state.setIsStudentLoggedIn); // Get the setter function
 
     const [formData, setFormData] = useState({
         name: '',
@@ -47,6 +49,7 @@ const StudentForm = () => {
             if (response.status === 'success') {
                 // Store the token in localStorage
                 localStorage.setItem('studentAuthToken', response.token);
+                setIsStudentLoggedIn(true); // Set global state to true
 
                 // Navigate to the home page and pass the student data
                 navigate('/', { state: { studentData: dataToSubmit } });

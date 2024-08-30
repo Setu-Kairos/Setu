@@ -2,10 +2,12 @@ import React from 'react';
 import { LoginCallBack, useOCAuth } from '@opencampus/ocid-connect-js';
 import { useNavigate } from 'react-router-dom';
 import { authenticateUser } from '../apiClient';
+import useStore from '../store/useStore'; // Import the Zustand store
 
 const RedirectHandler = () => {
     const navigate = useNavigate();
     const { ocAuth } = useOCAuth();
+    const {setIsStudentLoggedIn} = useStore()// Get the setter function
 
     const loginSuccess = async () => {
         console.log('Login successful!');
@@ -20,8 +22,9 @@ const RedirectHandler = () => {
             const response = await authenticateUser(openIdUsername, ethAddress);
 
             if (response.status === 'exists') {
-                // Store the token in localStorage
                 localStorage.setItem('studentAuthToken', response.token);
+                setIsStudentLoggedIn(true); // Set global state to true
+
                 navigate('/', { state: { studentData: response.data } });
             } else {
                 navigate('/student-form');
