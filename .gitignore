@@ -11,4 +11,4 @@ npm-debug.log
 
 build/
 dist/
-client/.parcel-cache
+client/.parcel-cache.env
