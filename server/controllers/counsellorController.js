@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 exports.registerCounsellor = async (req, res) => {
     const { name, age, email, password, bio, type } = req.body;
 
+
     try {
         // Check if file was uploaded
         if (!req.file) {
@@ -57,6 +58,7 @@ exports.registerCounsellor = async (req, res) => {
 
 exports.loginCounsellor = async (req, res) => {
     const { email, password } = req.body;
+    console.log(email)
 
     try {
         const counsellor = await Counsellor.findOne({ email });
