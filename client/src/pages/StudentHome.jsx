@@ -76,7 +76,7 @@ const StudentHome = () => {
                     {/* Right Section */}
                     <div className='md:w-1/2 w-full flex items-start'>
                         <img
-                            src='../assets/pexels-olly-3808057.jpg'
+                            src='pexels-olly-3808057.jpg'
                             alt='Student studying'
                             className='h-3/4 w-auto max-w-full'
                         />
