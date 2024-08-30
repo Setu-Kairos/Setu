@@ -8,10 +8,8 @@ const RedirectHandler = () => {
     const navigate = useNavigate();
     const { ocAuth } = useOCAuth();
     const {setIsStudentLoggedIn} = useStore()// Get the setter function
-
     const loginSuccess = async () => {
         console.log('Login successful!');
-
         try {
             const { edu_username: openIdUsername, eth_address: ethAddress } = ocAuth.authInfoManager._idInfo;
 

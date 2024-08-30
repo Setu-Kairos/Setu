@@ -2,6 +2,7 @@ import React from 'react';
 import useStore from '../store/useStore';
 import StudentHome from './StudentHome';
 import MainHome from './MainHome';
+import CounsellorHome from './CounsellorHome';
 
 const Home = () => {
     const isStudentLoggedIn = useStore((state) => state.isStudentLoggedIn);
@@ -10,7 +11,7 @@ const Home = () => {
     return (
         <div>
             {isStudentLoggedIn && <StudentHome />}
-            {/* Add other components or elements here if needed */}
+            {isCounsellorLoggedIn && <CounsellorHome />}
             {(!isStudentLoggedIn && !isCounsellorLoggedIn) && <MainHome />}
         </div>
     );
