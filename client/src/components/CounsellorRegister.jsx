@@ -12,6 +12,7 @@ const CounsellorRegister = () => {
         password: '',
         bio: '',
         photo: null, // Photo will be a file, so we start with null
+        type: '',
     });
     const {setCounsellorData, setIsCounsellorLoggedIn} = useStore();
 
@@ -44,6 +45,7 @@ const CounsellorRegister = () => {
         if (formData.photo) {
             data.append('photo', formData.photo); // Add the photo file to the FormData
         }
+        data.append('type', formData.type);
 
         try {
             const response = await registerCounsellor(data);
@@ -99,6 +101,23 @@ const CounsellorRegister = () => {
                     required
                 />
             </div>
+
+            <div className="mb-4">
+                <label htmlFor="type" className="block text-sm font-medium mb-2">Counsellor Type:</label>
+                <select
+                    id="type"
+                    name="type"
+                    value={formData.type}
+                    onChange={handleChange}
+                    className="w-full p-2 border text-black border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                    required
+                >
+                    <option value="">Select Counsellor Type</option>
+                    <option value="Mental Health Counsellor">Mental Health Counsellor</option>
+                    <option value="Academic Counsellor">Academic Counsellor</option>
+                </select>
+            </div>
+
             <div className="mb-4">
                 <label htmlFor="photo" className="block text-sm font-medium mb-2">Photo:</label>
                 <input

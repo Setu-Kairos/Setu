@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 exports.registerCounsellor = async (req, res) => {
-    const { name, age, email, password, bio } = req.body;
+    const { name, age, email, password, bio, type } = req.body;
 
     try {
         // Check if file was uploaded
@@ -23,7 +23,8 @@ exports.registerCounsellor = async (req, res) => {
             email,
             password: hashedPassword,
             bio,
-            photo: req.file.path, // Save the Cloudinary URL to the counsellor's record
+            photo: req.file.path, 
+            type
         });
 
         // Save the counsellor to the database
@@ -42,6 +43,7 @@ exports.registerCounsellor = async (req, res) => {
                 email: newCounsellor.email,
                 bio: newCounsellor.bio,
                 photo: newCounsellor.photo,
+                type: newCounsellor.type
             },
         });
     } catch (err) {
@@ -78,6 +80,7 @@ exports.loginCounsellor = async (req, res) => {
                 email: counsellor.email,
                 bio: counsellor.bio,
                 photo: counsellor.photo,
+                type: counsellor.type,
             },
         });
     } catch (err) {

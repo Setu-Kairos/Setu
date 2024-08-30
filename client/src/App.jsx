@@ -11,36 +11,34 @@ import StudentProfile from './pages/StudentProfile';
 import CounsellorProfile from './pages/CounsellorProfile';
 import useStore from './store/useStore';
 import AllCounsellors from './pages/AllCounsellors';
+import ErrorBoundary from './ErrorBoundary';
+import Footer from './components/Footer';
 
 
 
 function App() {
-    
-    const { isCounsellorLoggedIn, counsellorData } = useStore((state) => ({
-        isCounsellorLoggedIn: state.isCounsellorLoggedIn,
-        counsellorData: state.counsellorData,
-    }));
 
-    useEffect(() => {
-        if (isCounsellorLoggedIn) {
-            console.log(counsellorData);
-        }
-    }, [isCounsellorLoggedIn, counsellorData]);
     return (
-        <OCAuthProvider>
-            <Router>
-                <Navbar />
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/redirect" element={<RedirectHandler />} />
-                    <Route path='/student-form' element={<StudentForm />} />
-                    <Route path='/counsellor-login' element={<CounsellorForm />} />
-                    <Route path="/student-profile" element={<StudentProfile />} />
-                    <Route path="/counsellor-profile" element={<CounsellorProfile />} />
-                    <Route path="/all-counsellors" element={<AllCounsellors />} /> 
-                </Routes>
-            </Router>
-        </OCAuthProvider>
+        <ErrorBoundary>
+            <OCAuthProvider>
+                <Router>
+                    <div className="min-h-screen"> {/* This div ensures Routes takes at least 100vh */}
+                    <Navbar />
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route path="/redirect" element={<RedirectHandler />} />
+                            <Route path='/student-form' element={<StudentForm />} />
+                            <Route path='/counsellor-login' element={<CounsellorForm />} />
+                            <Route path="/student-profile" element={<StudentProfile />} />
+                            <Route path="/counsellor-profile" element={<CounsellorProfile />} />
+                            <Route path="/all-counsellors" element={<AllCounsellors />} />
+                        </Routes>
+                    </div>
+                    <Footer />
+                </Router>
+            </OCAuthProvider>
+        </ErrorBoundary>
+
     );
 }
 

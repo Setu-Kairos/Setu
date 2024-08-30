@@ -36,6 +36,6 @@ router.post('/login-counsellor', loginCounsellor);
 router.get('/counsellor', authenticateToken, getCounsellorData);
 
 // Get all counsellors
-router.get('/counsellors', authenticateToken, getAllCounsellors);
+router.get('/counsellors', getAllCounsellors);
 
 module.exports = router;

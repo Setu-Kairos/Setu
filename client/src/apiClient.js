@@ -139,7 +139,6 @@ export const fetchAllCounsellors = async () =>{
         const response = await fetch(`${API_BASE_URL}/counsellors`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
         })

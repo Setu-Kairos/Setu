@@ -19,6 +19,7 @@ const CounsellorProfile = () => {
                         <p><strong>Age:</strong> {counsellorData.age}</p>
                         <p><strong>Email:</strong> {counsellorData.email}</p>
                         <p><strong>Bio:</strong> {counsellorData.bio}</p>
+                        <p><strong>Type:</strong> {counsellorData.type}</p>
                     </div>
                 )}
             </div>

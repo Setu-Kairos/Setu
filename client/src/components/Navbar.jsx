@@ -23,7 +23,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className='bg-gray-700 py-1 px-8 flex flex-row justify-between w-full'>
+        <nav className='bg-blue-700 py-1 px-8 flex flex-row justify-between w-full'>
             <Link to="/" className="text-white hover:text-gray-300">
                 <img src="./src/assets/Education_Logo-removebg-preview.png" alt="Logo" className="w-[70px]" />
             </Link>
