@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:4000/api';
+const API_BASE_URL = 'https://setu.onrender.com/api';
 
 // Authenticate User (Student)
 export const authenticateUser = async (openIdUsername, ethAddress) => {
