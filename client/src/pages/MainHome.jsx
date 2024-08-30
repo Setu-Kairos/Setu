@@ -1,9 +1,10 @@
 import React from 'react';
+import main from '../assets/main.jpeg'
 
 const MainHome = () => {
     return (
         <div className="">
-            <img src='/WhatsApp Image 2024-08-31 at 00.06.17.jpeg' />
+            <img src={main}/>
         </div>
     );
 };

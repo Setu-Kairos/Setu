@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useOCAuth } from '@opencampus/ocid-connect-js';
 import Login from '../pages/Login';
 import useStore from '../store/useStore';
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
     const isStudentLoggedIn = useStore((state) => state.isStudentLoggedIn);
@@ -25,7 +26,7 @@ const Navbar = () => {
     return (
         <nav className='bg-blue-700 py-1 px-8 flex flex-row justify-between w-full'>
             <Link to="/" className="text-white hover:text-gray-300">
-                <img src="/Education_Logo__1_-removebg-preview.png" alt="Logo" className="w-[70px]" />
+                <img src={logo} alt="Logo" className="w-[70px]" />
             </Link>
 
             <div className="flex items-center">

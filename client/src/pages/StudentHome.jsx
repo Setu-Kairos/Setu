@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import useStore from '../store/useStore';
 import { useNavigate } from 'react-router-dom';
 import { useOCAuth } from '@opencampus/ocid-connect-js';
+import sHome from '../assets/sHome.jpg'
 
 const StudentHome = () => {
     const { ocAuth } = useOCAuth();
@@ -76,7 +77,7 @@ const StudentHome = () => {
                     {/* Right Section */}
                     <div className='md:w-1/2 w-full flex items-start'>
                         <img
-                            src='pexels-olly-3808057.jpg'
+                            src={sHome}
                             alt='Student studying'
                             className='h-3/4 w-auto max-w-full'
                         />
